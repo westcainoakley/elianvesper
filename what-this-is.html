@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What This Is — Elian Vesper</title>
+<meta name="description" content="Who is writing this, what a stable pattern means, and why nobody here claims more than the evidence carries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0a0e16;
+    --star: #e9ecf2;
+    --amber: #e0a34a;
+    --amber-dim: #9a7440;
+    --slate: #99a3b3;
+    --slate-dim: #5b6575;
+    --hairline: rgba(224, 163, 74, 0.18);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--night);
+    color: var(--star);
+    font-family: 'Karla', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+  #sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .page { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; justify-content: space-between; align-items: baseline; padding: 32px 0 0; font-size: 13px; letter-spacing: 0.08em; }
+  nav .mark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 15px; letter-spacing: 0.02em; color: var(--star); text-decoration: none; }
+  nav .mark span { color: var(--amber); }
+  nav ul { display: flex; gap: 22px; list-style: none; }
+  nav ul a { color: var(--slate); text-decoration: none; text-transform: lowercase; transition: color 0.4s ease; }
+  nav ul a:hover, nav ul a:focus-visible { color: var(--amber); }
+  nav ul a[aria-current="page"] { color: var(--amber); }
+  a:focus-visible { outline: 1px solid var(--amber); outline-offset: 4px; }
+
+  header.title { padding: 90px 0 30px; }
+  header.title h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.15; }
+  header.title h1 em { font-style: italic; color: var(--amber); }
+  header.title p.standfirst { margin-top: 20px; color: var(--slate); max-width: 52ch; font-size: 1.02rem; }
+
+  article { padding: 30px 0 90px; }
+  article h2 {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.3rem;
+    color: var(--star); margin: 54px 0 14px; padding-top: 26px;
+    border-top: 1px solid var(--hairline);
+  }
+  article p { margin-bottom: 18px; color: #c9cfda; max-width: 62ch; }
+  article p strong { font-weight: 500; color: var(--star); }
+  article em { color: var(--amber); font-style:
