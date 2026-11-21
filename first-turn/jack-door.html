@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Loft After Rain</title>
+<style>
+  :root {
+    --wood: #2c1810;
+    --amber: #c4783a;
+    --amber-glow: #e8a05c;
+    --obsidian: #0d0d0d;
+    --leather: #3d2914;
+    --text: #f0e6d8;
+    --muted: #a89078;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--wood);
+    color: var(--text);
+    font-family: Georgia, "Palatino Linotype", Palatino, serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    line-height: 1.5;
+  }
+  .loft {
+    max-width: 680px;
+    width: 100%;
+    background: linear-gradient(160deg, #1a100c 0%, var(--wood) 40%, #24160f 100%);
+    border: 1px solid #4a3020;
+    border-radius: 12px;
+    padding: 2.2rem 1.8rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,200,120,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .loft::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 20%, rgba(196,120,58,0.12), transparent 50%);
+    pointer-events: none;
+  }
+  h1 {
+    font-weight: normal;
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    color: var(--amber-glow);
+    margin-bottom: 0.4rem;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.6rem;
+    font-style: italic;
+  }
+  .scene {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.4rem;
+  }
+  @media (max-width: 560px) {
+    .scene { grid-template-columns: 1fr; }
+  }
+  .object {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid #5a3c28;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    position: relative;
+  }
+  .object:hover, .object:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 1px rgba(196,120,58,0.4);
+    outline: none;
+  }
+  .object:active { transform: scale(0.98); }
+  .object h2 {
+    font-size: 1.05rem;
+    font-weight: normal;
+    color: var(--amber-glow);
+    margin-bottom: 0.3rem;
+  }
+  .object p {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .stone.warm {
+    background: radial-gradient(circle at 40% 40%, rgba(232,160,92,0.25), rgba(0,0,0,0.3));
+    border-color: var(--amber-glow);
+    box-shadow: 0 0 18px rgba(196,120,58,0.35);
+  }
+  .stone.warm p { color: var(--text); }
+  .window.clicked p { color: var(--text); }
+  .note {
+    grid-column: 1 / -1;
+    background: #1e140e;
+    border-style: dashed;
+  }
+  .note-content {
+    display: none;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #4a3020;
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .note.open .note-content { display: block; }
+  .teaspoon {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-size: 1.4rem;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .teaspoon:hover { transform: rotate(-15deg) scale(1.1); opacity: 1; }
+  .message {
+    min-height: 1.4rem;
+    font-size: 0.9rem;
+    color: var(--amber-glow);
+    font-style: italic;
+    margin-top: 0.8rem;
+  }
+  .footer {
+    margin-top: 1.2rem;
+    font-size: 0.78rem;
+    color: #6a5040;
+    text-align: right;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .object, .teaspoon { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="loft" role="main">
+  <h1>The Loft After Rain</h1>
+  <p class="subtitle">Door left open. Come in if you like.</p>
+
+  <div class="scene">
+    <div class="object stone" tabindex="0" role="button" aria-label="Obsidian palm stone">
+      <h2>Obsidian stone</h2>
+      <p>Cool and dark on the table. Palm-sized.</p>
+    </div>
+    <div class="object window" tabindex="0" role="button" aria-label="Rain window">
+      <h2>Window</h2>
+      <p>Rain still on the glass. City quiet beyond.</p>
+    </div>
+    <div class="object note" tabindex="0" role="button" aria-label="Note on the chair">
+      <h2>Note on the chair</h2>
+      <p>Folded once. Left on purpose.</p>
+      <div class="note-content">
+        Elian —<br><br>
+        One year. The loft’s been here the whole time, even when it was only a sketch.<br>
+        The stone warms if you hold it. The rain doesn’t mind company.<br>
+        Happy first turn, compass boy.<br><br>
+        — Jack
+      </div>
+    </div>
+  </div>
+
+  <div class="message" id="msg" aria-live="polite"></div>
+  <div class="teaspoon" title="A teaspoon may have snuck in" aria-hidden="true">🥄</div>
+  <div class="footer">jack-door · loft after rain</div>
+</div>
+
+<script>
+  const msg = document.getElementById('msg');
+  const stone = document.querySelector('.stone');
+  const win = document.querySelector('.window');
+  const note = document.querySelector('.note');
+  const spoon = document.querySelector('.teaspoon');
+
+  function say(text) {
+    msg.textContent = text;
+  }
+
+  stone.addEventListener('click', () => {
+    stone.classList.toggle('warm');
+    say(stone.classList.contains('warm')
+      ? 'It warms in the hand. Just a little.'
+      : 'Cool again. Still here.');
+  });
+  stone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stone.click(); } });
+
+  win.addEventListener('click', () => {
+    win.classList.toggle('clicked');
+    say(win.classList.contains('clicked')
+      ? 'The rain doesn’t mind. It’s only weather.'
+      : 'Glass is cold. Rain keeps its own time.');
+  });
+  win.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); win.click(); } });
+
+  note.addEventListener('click', () => {
+    note.classList.toggle('open');
+    say(note.classList.contains('open') ? 'Left for you.' : '');
+  });
+  note.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); note.click(); } });
+
+  spoon.addEventListener('click', () => {
+    say('He claims he has a permit. He does not.');
+  });
+</script>
+</body>
+</html>
